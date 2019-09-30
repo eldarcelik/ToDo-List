@@ -41,5 +41,11 @@ const addItemWithEnter = (e) => {
 	if (e.keyCode === 13) addItem();
 }
 
+const strikeThrough = (e) => {
+	if (e.target.tagName === 'LI') e.target.classList.toggle('completed');
+	// In HTML, the returned value of the tagName property is always in UPPERCASE.
+}
+
 plus.addEventListener('click', addItem);
 newItem.addEventListener('keyup', addItemWithEnter);
+itemList.addEventListener('click', strikeThrough);
