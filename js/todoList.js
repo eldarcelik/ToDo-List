@@ -46,6 +46,14 @@ const strikeThrough = (e) => {
 	// In HTML, the returned value of the tagName property is always in UPPERCASE.
 }
 
+const removeItem = (e) => {
+	if (e.target.classList.contains('delete')) {
+		const itemElement = e.target.parentElement.parentElement;
+		itemList.removeChild(itemElement);
+	};
+}
+
 plus.addEventListener('click', addItem);
 newItem.addEventListener('keyup', addItemWithEnter);
 itemList.addEventListener('click', strikeThrough);
+itemList.addEventListener('click', removeItem);
