@@ -8,11 +8,13 @@ body {
 h1 {
 	background-color: #2980b9;
 	color: white;
-	margin: none;
+	margin: 0;
 	padding: 10px 20px;
 	text-transform: uppercase;
 	font-size: 20px;
 	font-weight: normal;
+	text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+	z-index: 1;
 }
 
 input {
@@ -24,13 +26,45 @@ input {
 	border: none;
 	margin: none;
 	color: #2980b9;
-	display: 
-	
+	display: none;
+	animation: fadeIn 0.8s ease-in;
+	z-index: 2;
 }
 
 input:focus {
 	background-color: white;
 	outline: none; /*from the browsers*/
+}
+
+.toggle-input {
+	font-size: 18px;
+	background-color: #f7f7f7;
+	width: 100%;
+	padding: 13px 13px 13px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: none;
+	color: #2980b9;
+	display: block;
+	z-index: 2;
+}
+
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: black;
+	opacity: 0.3;
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: black;
+	opacity: 0.3;
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: black;
+	opacity: 0.3;
 }
 
 ul { 
@@ -60,20 +94,20 @@ span {
 	color: white;
 	width: 0;
 	display: inline-block;
-	transition: 0.5 linear;
+	transition: all 500ms linear;
 	opacity: 0;
 }
 
 li:hover span {
 	width: 40px;
-	opacity: 1.0;
+	opacity: 1;
 }
 
 #container {
 	width: 360px;
 	margin: 100px auto;
 	background-color: transparent;
-	box-shadow: 0 0 3px rgba(0,0,0, 0.1);
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .completed {
@@ -84,15 +118,23 @@ li:hover span {
 .fa-plus {
 	float: right;
 	margin-top: 2px;
-	animation: pulse 2s infinite;
-	-webkit-animation: pulse 2s infinite;
+	-moz-animation: pulse 2s infinite linear;
+	-o-animation: pulse 2s infinite linear;
+	-webkit-animation: pulse 2s infinite linear;
+	animation: pulse 2s infinite linear;
 }
-/*
+
 .fa-plus:hover {
-	animation: none;
+	-moz-animation: none;
+	-o-animation: none;
 	-webkit-animation: none;
+	animation: none;
 }
-*/
+
+.fa-plus-stop-pulsing {
+	animation: none;
+}
+
 .fa-trash-alt {
 	position: absolute;
 	top: 0;
@@ -107,12 +149,81 @@ li:hover span {
 	top: 12px;
 }
 
-@keyframes pulse {
+@-webkit-keyframes pulse {
 	0% {
-		box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
 	}
 
 	100% {
-		box-shadow: 0 0 0 13px rgba(0, 0, 0, 0);
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }

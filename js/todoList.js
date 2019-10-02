@@ -4,7 +4,7 @@ const plus = document.querySelector('.fa-plus');
 
 const addItem = (e) => {
 
-	if (newItem.value !== null && newItem.value !== undefined && newItem.value.trim() !== "") {
+	if (e.keyCode === 13 && newItem.value !== null && newItem.value !== undefined && newItem.value.trim() !== "") {
 		// The trim() method removes whitespace from both sides of a string 
 
 		// Crete new li element
@@ -37,10 +37,6 @@ const addItem = (e) => {
 	};
 }
 
-const addItemWithEnter = (e) => {
-	if (e.keyCode === 13) addItem();
-}
-
 const strikeThrough = (e) => {
 	if (e.target.tagName === 'LI') e.target.classList.toggle('completed');
 	// In HTML, the returned value of the tagName property is always in UPPERCASE.
@@ -53,7 +49,13 @@ const removeItem = (e) => {
 	};
 }
 
-plus.addEventListener('click', addItem);
-newItem.addEventListener('keyup', addItemWithEnter);
+const displayInput = (e) => {	
+	newItem.classList.toggle('input');
+	newItem.classList.toggle('toggle-input');
+	plus.classList.toggle('fa-plus-stop-pulsing')
+}
+
+plus.addEventListener('click', displayInput);
+newItem.addEventListener('keyup', addItem);
 itemList.addEventListener('click', strikeThrough);
 itemList.addEventListener('click', removeItem);
