@@ -10,25 +10,32 @@ const addItem = (e) => {
 		// Crete new li element
 		const li = document.createElement('li');
 
-		// Create span
-		const spanElement = document.createElement('span');
+		// Create 'trash' span
+		const spanElementTrash = document.createElement('span');
 		// Add classes to span
-		spanElement.className = 'delete';
+		spanElementTrash.className = 'deleting';
 		// Append span to li
-		li.appendChild(spanElement);
+		li.appendChild(spanElementTrash);
 
-		// Create icon
-		const iconElement = document.createElement('i');
-		// Add classes to icon
-		iconElement.className = 'fa fa-trash-alt delete';
-		// Append icon to span
-		spanElement.appendChild(iconElement);
+		// Create 'trash' icon
+		const trashIcon = document.createElement('i');
+		trashIcon.className = 'fa fa-trash-alt delete';
+		spanElementTrash.appendChild(trashIcon);
 
 		// Add text node with input value and uppercase first letter of input
 		const newItemValue = newItem.value;
 		const textNode = document.createTextNode(newItemValue.charAt(0).toUpperCase() + newItemValue.slice(1));
-		// Append text node to li
 		li.appendChild(textNode);
+
+		// Create 'check' span
+		const spanElementChecking = document.createElement('span');
+		spanElementChecking.className = 'checking';
+		li.appendChild(spanElementChecking);
+
+		// Create 'check' icon 
+		const checkIcon = document.createElement('i');
+		checkIcon.className = 'far fa-check-circle check-circle';
+		spanElementChecking.appendChild(checkIcon);
 
 		// Append li to list
 		itemList.appendChild(li);
@@ -38,8 +45,10 @@ const addItem = (e) => {
 }
 
 const strikeThrough = (e) => {
-	if (e.target.tagName === 'LI') e.target.classList.toggle('completed');
-	// In HTML, the returned value of the tagName property is always in UPPERCASE.
+	if (e.target.classList.contains('check-circle')) {
+		e.target.parentElement.parentElement.classList.toggle('completed');
+		e.target.classList.toggle('checked');
+	}
 }
 
 const removeItem = (e) => {
