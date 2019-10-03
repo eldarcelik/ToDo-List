@@ -205,6 +205,11 @@ li:hover .delete {
 	font-weight: bold;
 }
 
+.fade-out {
+	opacity: 0.3;
+	transition: opacity 0.8s ease-in;
+}
+
 @-webkit-keyframes pulse {
 	0% {
 		opacity: 1;
@@ -283,7 +288,6 @@ li:hover .delete {
 		opacity: 1;
 	}
 }
-
 
 /* Scrollbar */
 body::-webkit-scrollbar-track {

@@ -58,13 +58,15 @@ const strikeThrough = (e) => {
 const removeItem = (e) => {
 	if (e.target.classList.contains('delete')) {
 		const itemElement = e.target.parentElement.parentElement;
-		itemList.removeChild(itemElement);
-		localStorage["list"] = itemList.innerHTML // updating localstorage
+		e.target.parentElement.parentElement.classList.add('fade-out'); // fade out item
+		setTimeout(() => {
+			itemList.removeChild(itemElement);
+			localStorage["list"] = itemList.innerHTML // updating localstorage
+		}, 800); // 0.8s fading out and then remove item
 	};
 }
 
 const displayInput = (e) => {	
-	newItem.classList.toggle('input');
 	newItem.classList.toggle('toggle-input');
 	plus.classList.toggle('fa-plus-stop-pulsing');
 	localStorage["list"] = itemList.innerHTML // updating localstorage
