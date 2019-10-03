@@ -145,7 +145,7 @@ li:nth-child(2n) {
 	position: relative;
 	background-color: #e74c3c;
 	height: 40px;
-	margin-right: 20px;
+	margin-right: 15px;
 	color: white;
 	width: 0;
 	transition: all 500ms linear;
@@ -180,9 +180,8 @@ li:hover .delete {
 
 .checking {
 	position: relative;
-	width: 100%;
 	height: 100%;
-	margin-left: 20px;
+	margin-left: auto;
 }
 
 .fa-check-circle {
