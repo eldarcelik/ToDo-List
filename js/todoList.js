@@ -25,7 +25,6 @@ const addItem = (e) => {
 		// Add text node with input value and uppercase first letter of input
 		const newItemValue = newItem.value;
 		const textNode = document.createTextNode(newItemValue.charAt(0).toUpperCase() + newItemValue.slice(1));
-		textNode.toString().replace(/(\r\n|\n|\r)/gm, " ");
 		li.appendChild(textNode);
 
 		// Create 'check' span
@@ -42,6 +41,9 @@ const addItem = (e) => {
 		itemList.appendChild(li);
 		// Set next input to empty value
 		newItem.value = '';
+		
+		// updating localstorage
+		localStorage["list"] = itemList.innerHTML 
 	};
 }
 
@@ -49,6 +51,7 @@ const strikeThrough = (e) => {
 	if (e.target.classList.contains('check-circle')) {
 		e.target.parentElement.parentElement.classList.toggle('completed');
 		e.target.classList.toggle('checked');
+		localStorage["list"] = itemList.innerHTML // updating localstorage
 	}
 }
 
@@ -56,13 +59,19 @@ const removeItem = (e) => {
 	if (e.target.classList.contains('delete')) {
 		const itemElement = e.target.parentElement.parentElement;
 		itemList.removeChild(itemElement);
+		localStorage["list"] = itemList.innerHTML // updating localstorage
 	};
 }
 
 const displayInput = (e) => {	
 	newItem.classList.toggle('input');
 	newItem.classList.toggle('toggle-input');
-	plus.classList.toggle('fa-plus-stop-pulsing')
+	plus.classList.toggle('fa-plus-stop-pulsing');
+	localStorage["list"] = itemList.innerHTML // updating localstorage
+}
+
+if (localStorage["list"]) {
+	itemList.innerHTML = localStorage["list"];
 }
 
 plus.addEventListener('click', displayInput);
